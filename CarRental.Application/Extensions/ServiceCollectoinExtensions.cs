@@ -8,7 +8,7 @@ namespace CarRental.Application.Extensions
 {
     public static class ServiceCollectoinExtensions
     {
-        services.
+      
 
 
     }
