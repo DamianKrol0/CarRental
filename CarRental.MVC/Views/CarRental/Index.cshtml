@@ -6,7 +6,7 @@
 
 <h1>Cars</h1>
 
-<button type="button" class="btn btn-primary">Add new Car</button>
+<a class="btn btn-outline-secondary" asp-controller="CarRental" asp-action="Create">Add new Car</a>
 
 <hr/>
 
@@ -15,17 +15,17 @@
      <div class="card" style="width: 18rem;">
           <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">@item.Name</h5>
+        <h5 class="card-title">@item.Brand @item.Name</h5>
        
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">@item.Description</li>
-        <li class="list-group-item"> Price: @item.Price</li>
+        <li class="list-group-item"> <b>Price:</b> @item.Price @item.Currency</li>
       </ul>
       <div class="card-body">
         <a href="#" class="card-link">Rent</a>
-        <a href="#" class="card-link">More Details</a>
-        <a href="#" class="card-link">Edit</a>
+        <a  asp-controller="CarRental" asp-action="Details" asp-route-id ="@item.Id" class="card-link">More Details</a>
+            <a asp-controller="CarRental" asp-action="Edit" asp-route-id ="@item.Id"class="card-link">Edit</a>
       </div>
     </div>
 }

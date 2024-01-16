@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.Infrastructure.Repositories
 {
-    public class CarRepository: ICarRepository
+    public class CarRepository : ICarRepository
 
     {
         private readonly CarRentalDbContext dbContext;
@@ -20,6 +20,9 @@ namespace CarRental.Infrastructure.Repositories
             this.dbContext = dbContext;
         }
 
+        public Task Commit()
+        =>dbContext.SaveChangesAsync(); 
+
         public async Task Create(Cars car)
         {
             dbContext.Add(car);
@@ -28,5 +31,8 @@ namespace CarRental.Infrastructure.Repositories
 
         public async Task<IEnumerable<Domain.Entities.Cars>> GetAll()
            => await dbContext.Cars.ToListAsync();
+
+        public async Task<Cars> GetCarById(int id)
+        => await dbContext.Cars.FirstAsync(c => c.Id == id);
     }
 }

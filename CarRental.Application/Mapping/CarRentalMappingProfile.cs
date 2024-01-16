@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using CarRental.Application.CarRental;
+using CarRental.Application.CarRental.Commands.EditCar;
 
 namespace CarRental.Application.Mapping
 {
@@ -13,6 +14,7 @@ namespace CarRental.Application.Mapping
         public CarRentalMappingProfile()
         {
             CreateMap<CarsDto, Domain.Entities.Cars>().ReverseMap();
+            CreateMap<CarsDto, EditCarCommand>();
         }
     }
 }
