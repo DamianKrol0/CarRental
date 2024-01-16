@@ -19,7 +19,12 @@ namespace CarRental.Infrastructure.Persistance
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Domain.Entities.Cars>();
+            modelBuilder.Entity<Domain.Entities.Cars>()
+                .Property(c=>c.Consumption).HasColumnType("decimal(5,2)").HasPrecision(1);
+            
+            modelBuilder.Entity<Domain.Entities.Cars>()
+                .Property(c => c.Price).HasColumnType("decimal(5,2)").HasPrecision(2);
+            
         }
     }
 }

@@ -1,5 +1,5 @@
 using System.Data.Common;
-
+using CarRental.Application.Extensions;
 using CarRental.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true); ;
 
 builder.Services.AddInfrastructure(builder.Configuration);
-
+builder.Services.AddApplication();
 
 
 
@@ -38,3 +38,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+public partial class Program { }

@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using CarRental.Domain.Interfaces;
+using MediatR;
 
 namespace CarRental.Application.CarRental.Queries.GetAllCars
 {
-    public class GetAllCarsQueryHandler(ICarRepository repository, IMapper mapper)
+    public class GetAllCarsQueryHandler(ICarRepository repository, IMapper mapper):IRequestHandler<GetAllCarsQuery,IEnumerable<CarsDto>>
     {
         private readonly ICarRepository repository = repository;
         private readonly IMapper mapper = mapper;
