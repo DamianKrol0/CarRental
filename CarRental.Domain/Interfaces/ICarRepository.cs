@@ -9,5 +9,6 @@ namespace CarRental.Domain.Interfaces
     public interface ICarRepository
     {
         Task<IEnumerable<Domain.Entities.Cars>> GetAll();
+        Task Create(Domain.Entities.Cars car);
     }
 }
