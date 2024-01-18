@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Application", "CarRental.Application\CarRental.Application.csproj", "{5ED6C318-5C7B-461C-903A-2A4DE7889AAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Application", "CarRental.Application\CarRental.Application.csproj", "{5ED6C318-5C7B-461C-903A-2A4DE7889AAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Domain", "CarRental.Domain\CarRental.Domain.csproj", "{2149A872-EE39-4421-A75B-C2ED95C2BCA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Domain", "CarRental.Domain\CarRental.Domain.csproj", "{2149A872-EE39-4421-A75B-C2ED95C2BCA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Infrastructure", "CarRental.Infrastructure\CarRental.Infrastructure.csproj", "{DA93632F-EB0E-4E38-A6EE-3F98ED0638B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.Infrastructure", "CarRental.Infrastructure\CarRental.Infrastructure.csproj", "{DA93632F-EB0E-4E38-A6EE-3F98ED0638B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.MVC", "CarRental.MVC\CarRental.MVC.csproj", "{F234AED4-4EDE-4789-A279-E3EAF70D551B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRental.MVC", "CarRental.MVC\CarRental.MVC.csproj", "{F234AED4-4EDE-4789-A279-E3EAF70D551B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
