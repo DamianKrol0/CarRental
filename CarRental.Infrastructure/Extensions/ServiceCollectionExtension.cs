@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CarRental.Domain.Interfaces;
 using CarRental.Infrastructure.Persistance;
 using CarRental.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +20,10 @@ namespace CarRental.Infrastructure.Extensions
             services.AddDbContext<CarRentalDbContext>(options => options.UseSqlServer(
                 configuration.GetConnectionString("CarRental")));
 
-
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<CarRentalDbContext>();
+                
 
 
             services.AddScoped<DbContext, CarRentalDbContext>();

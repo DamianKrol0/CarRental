@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CarRental.MVC.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/toastr.js/toastr.css" />
 </head>
 <body>
     <header>
@@ -26,6 +27,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="CarRental" asp-action="Index">Cars</a>
                         </li>
                     </ul>
+                      <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -38,11 +40,12 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - CarRental.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - CarRental - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

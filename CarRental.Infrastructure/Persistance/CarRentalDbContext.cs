@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarRental.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRental.Infrastructure.Persistance
 {
-    public class CarRentalDbContext:DbContext
+    public class CarRentalDbContext:IdentityDbContext
     {
         public CarRentalDbContext(DbContextOptions<CarRentalDbContext> options) : base(options)
         {
