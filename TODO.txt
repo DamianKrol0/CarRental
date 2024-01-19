@@ -1,0 +1,2 @@
+﻿1.Dodać waluty do bazy 
+2.Dodać comboboxa do formatki create
