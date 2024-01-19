@@ -16,15 +16,22 @@ namespace CarRental.Infrastructure.Persistance
             
         }
         public DbSet<Domain.Entities.Cars> Cars { get; set; }
+        public DbSet<Domain.Entities.Currencies> Currencies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Domain.Entities.Cars>()
                 .Property(c=>c.Consumption).HasColumnType("decimal(5,2)").HasPrecision(1);
-            
+
             modelBuilder.Entity<Domain.Entities.Cars>()
                 .Property(c => c.Price).HasColumnType("decimal(5,2)").HasPrecision(2);
+
+            modelBuilder.Entity<Domain.Entities.Currencies>()
+                .HasMany(c => c.Cars)
+                .WithOne(c => c.Currencies);
+                
+            
             
         }
     }
