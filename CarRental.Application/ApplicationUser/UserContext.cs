@@ -12,14 +12,10 @@ namespace CarRental.Application.ApplicationUser
 {
 
 
-    public class UserContext :IUserContext
+    public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
-        public UserContext(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
         public CurrentUser? GetCurrentUser() {
         
             var user = _httpContextAccessor?.HttpContext?.User;

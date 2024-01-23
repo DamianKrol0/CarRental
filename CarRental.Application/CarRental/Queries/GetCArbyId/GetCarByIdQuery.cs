@@ -7,13 +7,8 @@ using MediatR;
 
 namespace CarRental.Application.CarRental.Queries.GetCArbyId
 {
-    public class GetCarByIdQuery :IRequest<CarsDto>
+    public class GetCarByIdQuery(int Id) : IRequest<CarsDto>
     {
-        public GetCarByIdQuery(int Id)
-        {
-            this.Id = Id;
-        }
-
-        public int Id { get; set; }
+        public int Id { get; set; } = Id;
     }
 }

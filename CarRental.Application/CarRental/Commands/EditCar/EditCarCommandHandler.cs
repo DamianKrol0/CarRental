@@ -10,22 +10,21 @@ namespace CarRental.Application.CarRental.Commands.EditCar
 {
     public class EditCarCommandHandler(ICarRepository repository) : IRequestHandler<EditCarCommand>
     {
-        private readonly ICarRepository repository = repository;
+        private readonly ICarRepository _repository = repository;
 
         public async Task Handle(EditCarCommand request, CancellationToken cancellationToken)
         {
-            var car =await repository.GetCarById(request.Id);
+            var car =await _repository.GetCarById(request.Id);
 
             car.Name = request.Name;
             car.Brand = request.Brand;  
             car.Description = request.Description;
             car.Price = request.Price;
-            car.Currencies.Code = request.Currency;
             car.BoxCapacity = request.BoxCapacity;  
             car.Consumption = request.Consumption;
             car.Persons = request.Persons;
 
-            await repository.Commit();
+            await _repository.Commit();
         }
     }
 }

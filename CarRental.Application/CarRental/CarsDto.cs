@@ -12,15 +12,15 @@ namespace CarRental.Application.CarRental
         public string Name { get; set; } = default!;
         public string Brand { get; set; } = default!;
         public string? Description { get; set; }
-        
+
         public decimal Price { get; set; }
 
-        public string Currency { get; set; }=default!;
+        public Domain.Entities.Currencies Currency { get; }
 
         public decimal? Consumption { get; set; }
 
-        public int? Persons {get; set;}
-        public int BoxCapacity { get; set;}
+        public int? Persons { get; set; }
+        public int BoxCapacity { get; set; }
         public string? CreatedById { get; set; }
 
     }

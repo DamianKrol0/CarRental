@@ -3,21 +3,14 @@ using CarRental.Application.CarRental.Commands.CreateNewCar;
 using CarRental.Application.CarRental.Commands.EditCar;
 using CarRental.Application.CarRental.Queries.GetAllCars;
 using CarRental.Application.CarRental.Queries.GetCArbyId;
+using CarRental.Application.Currencies.Query.GetAllCurrencies;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.MVC.Controllers
 {
-    public class CarRentalController : Controller
+    public class CarRentalController(IMapper mapper, IMediator mediator) : Controller
     {
-        private readonly IMapper mapper;
-        private readonly IMediator mediator;
-
-        public CarRentalController(IMapper mapper, IMediator mediator)
-        {
-            this.mapper = mapper;
-            this.mediator = mediator;
-        }
         public async Task <IActionResult> Index()
         {
             var cars = await mediator.Send(new GetAllCarsQuery());
@@ -71,5 +64,13 @@ namespace CarRental.MVC.Controllers
         }
 
 
+        
+        public async Task<IActionResult> GetAllCurrencies()
+        {
+            var currencies = await mediator.Send(new GetAllCurrenciesQuery());
+
+          
+            return View(currencies);
+        }
     }
 }
