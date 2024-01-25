@@ -33,13 +33,11 @@
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
+            @{
+                Html.RenderPartial("_GetAllCurrencies");
+            }  
             <div class="form-group">
-                <label asp-for="Currency" class="control-label"></label>
-                <input asp-for="Currency" class="form-control" />
-                <span asp-validation-for="Currency" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Consumption" class="control-label"></label>
+                <label asp-for="Consumption" class="control-label">Consumption [l/100km]</label>
                 <input asp-for="Consumption" class="form-control" />
                 <span asp-validation-for="Consumption" class="text-danger"></span>
             </div>

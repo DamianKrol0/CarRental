@@ -7,6 +7,7 @@ using AutoMapper;
 using CarRental.Application.ApplicationUser;
 using CarRental.Application.CarRental;
 using CarRental.Application.CarRental.Commands.EditCar;
+using CarRental.Application.Currencies;
 
 namespace CarRental.Application.Mapping
 {

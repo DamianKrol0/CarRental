@@ -9,21 +9,15 @@ using MediatR;
 
 namespace CarRental.Application.CarRental.Queries.GetCArbyId
 {
-    public class GetCarByIdQueryHandler : IRequestHandler<GetCarByIdQuery, CarsDto>
+    public class GetCarByIdQueryHandler(ICarRepository repository, IMapper mapper) : IRequestHandler<GetCarByIdQuery, CarsDto>
     {
-        private readonly ICarRepository repository;
-        private readonly IMapper mapper;
-
-        public GetCarByIdQueryHandler(ICarRepository repository,IMapper mapper)
-        {
-            this.repository = repository;
-            this.mapper = mapper;
-        }
+        private readonly ICarRepository _repository = repository;
+        private readonly IMapper _mapper = mapper;
 
         public async Task<CarsDto> Handle(GetCarByIdQuery request, CancellationToken cancellationToken)
         {
-            var car = await repository.GetCarById(request.Id);
-            var dto = mapper.Map<CarsDto>(car);
+            var car = await _repository.GetCarById(request.Id);
+            var dto = _mapper.Map<CarsDto>(car);
             return dto;
         }
     }

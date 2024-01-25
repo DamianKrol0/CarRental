@@ -4,6 +4,7 @@ using CarRental.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.Infrastructure.Migrations
 {
     [DbContext(typeof(CarRentalDbContext))]
-    partial class CarRentalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240122091138_DeletingColumnsFromCurrencies")]
+    partial class DeletingColumnsFromCurrencies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,10 +42,7 @@ namespace CarRental.Infrastructure.Migrations
 
                     b.Property<decimal?>("Consumption")
                         .HasPrecision(1)
-                        .HasColumnType("decimal(6,2)");
-
-                    b.Property<string>("CreatedById")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
@@ -54,9 +54,6 @@ namespace CarRental.Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsEditable")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -66,7 +63,7 @@ namespace CarRental.Infrastructure.Migrations
 
                     b.Property<decimal>("Price")
                         .HasPrecision(2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 

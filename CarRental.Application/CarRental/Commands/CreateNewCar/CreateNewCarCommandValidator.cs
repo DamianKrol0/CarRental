@@ -18,8 +18,7 @@ namespace CarRental.Application.CarRental.Commands.CreateNewCar
                .NotEmpty();
             RuleFor(c => c.Brand)
                .NotEmpty();
-            RuleFor(c => c.Currency)
-               .NotEmpty();
+ 
 
             RuleFor(c => c.Consumption)
                .NotEmpty();
