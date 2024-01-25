@@ -19,7 +19,7 @@ namespace CarRental.Application.CarRental.Queries.GetAllCars
 
         {
             var cars = await repository.GetAll();
-        var dtos = mapper.Map<IEnumerable<CarsDto>>(cars);
+            var dtos = mapper.Map<IEnumerable<CarsDto>>(cars);
             return dtos;
         }
 

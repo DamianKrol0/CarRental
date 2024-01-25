@@ -22,5 +22,7 @@ namespace CarRental.Domain.Entities
 
         public int? Persons { get; set; }
         public int BoxCapacity { get; set; }
+       public string? CreatedById { get; set; }
+        public bool IsEditable { get; set; }
     }
 }

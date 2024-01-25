@@ -4,6 +4,7 @@ using CarRental.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.Infrastructure.Migrations
 {
     [DbContext(typeof(CarRentalDbContext))]
-    partial class CarRentalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240125143914_AddColumnCreatedById")]
+    partial class AddColumnCreatedById
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,9 +42,10 @@ namespace CarRental.Infrastructure.Migrations
 
                     b.Property<decimal?>("Consumption")
                         .HasPrecision(1)
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("CreatedById")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Currency")
@@ -63,7 +67,7 @@ namespace CarRental.Infrastructure.Migrations
 
                     b.Property<decimal>("Price")
                         .HasPrecision(2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 

@@ -10,12 +10,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CarRental.Application.Extensions
 {
-    public static class ServiceCollectoinExtensions
+    public static class ServiceCollectionExtensions
     {
         public static void AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IUserContext, UserContext>();
-            services.AddMediatR(cf => cf.RegisterServicesFromAssembly(typeof(ServiceCollectoinExtensions).Assembly));
+            services.AddMediatR(cf => cf.RegisterServicesFromAssembly(typeof(ServiceCollectionExtensions).Assembly));
             services.AddScoped(provider => new MapperConfiguration(cfg =>
             {
             var scope = provider.CreateScope();

@@ -21,10 +21,10 @@ namespace CarRental.Infrastructure.Persistance
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Domain.Entities.Cars>()
-                .Property(c=>c.Consumption).HasColumnType("decimal(5,2)").HasPrecision(1);
+                .Property(c=>c.Consumption).HasColumnType("decimal(6,2)").HasPrecision(1);
             
             modelBuilder.Entity<Domain.Entities.Cars>()
-                .Property(c => c.Price).HasColumnType("decimal(5,2)").HasPrecision(2);
+                .Property(c => c.Price).HasColumnType("decimal(10,2)").HasPrecision(2);
             
         }
     }

@@ -18,6 +18,10 @@ namespace CarRental.Application.Mapping
 
             CreateMap<CarsDto, Domain.Entities.Cars>().ReverseMap();
             CreateMap<CarsDto, EditCarCommand>();
+
+
+            CreateMap<Domain.Entities.Cars, CarsDto>()
+                .ForMember(dto => dto.IsEditable, opt => opt.MapFrom(src => user != null && src.CreatedById == user.id));
         }
     }
 }
