@@ -3,7 +3,7 @@ using CarRental.Application.CarRental.Commands.CreateNewCar;
 using CarRental.Application.CarRental.Commands.EditCar;
 using CarRental.Application.CarRental.Queries.GetAllCars;
 using CarRental.Application.CarRental.Queries.GetCArbyId;
-using CarRental.Application.Currencies.Query.GetAllCurrencies;
+
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -65,12 +65,6 @@ namespace CarRental.MVC.Controllers
 
 
         
-        public async Task<IActionResult> GetAllCurrencies()
-        {
-            var currencies = await mediator.Send(new GetAllCurrenciesQuery());
-
-          
-            return View(currencies);
-        }
+      
     }
 }

@@ -16,7 +16,7 @@ namespace CarRental.Domain.Entities
 
         public decimal Price { get; set; }
 
-        public Currencies Currencies { get; } 
+       public string? Currency {  get; set; }    
 
         public decimal? Consumption { get; set; }
 

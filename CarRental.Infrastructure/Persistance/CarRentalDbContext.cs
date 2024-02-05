@@ -16,7 +16,7 @@ namespace CarRental.Infrastructure.Persistance
             
         }
         public DbSet<Domain.Entities.Cars> Cars { get; set; }
-        public DbSet<Domain.Entities.Currencies> Currencies { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,7 +25,7 @@ namespace CarRental.Infrastructure.Persistance
                 .Property(c=>c.Consumption).HasColumnType("decimal(6,2)").HasPrecision(1);
             
             modelBuilder.Entity<Domain.Entities.Cars>()
-                .Property(c => c.Price).HasColumnType("decimal(5,2)").HasPrecision(2);
+                .Property(c => c.Price).HasColumnType("decimal(10,2)").HasPrecision(2);
             
         }
     }
