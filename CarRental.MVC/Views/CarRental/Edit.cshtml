@@ -11,12 +11,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>         
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -43,7 +38,7 @@
                 <span asp-validation-for="Currency" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Consumption" class="control-label"></label>
+                <label asp-for="Consumption" class="control-label">Consumption [l/100km]</label>
                 <input asp-for="Consumption" class="form-control" />
                 <span asp-validation-for="Consumption" class="text-danger"></span>
             </div>
@@ -53,7 +48,7 @@
                 <span asp-validation-for="Persons" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BoxCapacity" class="control-label"></label>
+                <label asp-for="BoxCapacity" class="control-label">Box Capacity [l]</label>
                 <input asp-for="BoxCapacity" class="form-control" />
                 <span asp-validation-for="BoxCapacity" class="text-danger"></span>
             </div>

@@ -67,6 +67,9 @@
     </dl>
 </div>
 <div>
+      @if ( User.IsInRole("Owner") || User.IsInRole("Moderator"))
+        {
     <a asp-controller="CarRental" asp-action="Edit" asp-route-id ="@Model.Id"class="card-link">Edit</a>
+        }
     <a asp-action="Index">Back to List</a>
 </div>

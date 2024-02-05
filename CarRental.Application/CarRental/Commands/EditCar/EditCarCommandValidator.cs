@@ -17,7 +17,6 @@ namespace CarRental.Application.CarRental.Commands.EditCar
             RuleFor(c => c.Brand)
                .NotEmpty();
 
-
             RuleFor(c => c.Consumption)
                .NotEmpty();
             RuleFor(c => c.Persons)
