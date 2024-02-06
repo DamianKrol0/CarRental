@@ -44,12 +44,8 @@ namespace CarRental.Infrastructure.Migrations
                     b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreatedById")
+                    b.Property<string>("Currency")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CurrenciesId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -70,42 +66,34 @@ namespace CarRental.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CurrenciesId");
-
-                    b.ToTable("Cars");
+                    b.ToTable("Cars", (string)null);
                 });
 
-            modelBuilder.Entity("CarRental.Domain.Entities.Currencies", b =>
+            modelBuilder.Entity("CarRental.Domain.Entities.Rents", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Countries")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Digits")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Symbol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Currencies");
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Rents", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -310,15 +298,15 @@ namespace CarRental.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CarRental.Domain.Entities.Cars", b =>
+            modelBuilder.Entity("CarRental.Domain.Entities.Rents", b =>
                 {
-                    b.HasOne("CarRental.Domain.Entities.Currencies", "Currencies")
-                        .WithMany("Cars")
-                        .HasForeignKey("CurrenciesId")
+                    b.HasOne("CarRental.Domain.Entities.Cars", "Car")
+                        .WithMany("Rents")
+                        .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Currencies");
+                    b.Navigation("Car");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -372,9 +360,9 @@ namespace CarRental.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CarRental.Domain.Entities.Currencies", b =>
+            modelBuilder.Entity("CarRental.Domain.Entities.Cars", b =>
                 {
-                    b.Navigation("Cars");
+                    b.Navigation("Rents");
                 });
 #pragma warning restore 612, 618
         }

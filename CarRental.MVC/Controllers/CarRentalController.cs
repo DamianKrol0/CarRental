@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CarRental.Application.CarRental.Commands.CreateNewCar;
+using CarRental.Application.CarRental.Commands.CreateNewRent;
 using CarRental.Application.CarRental.Commands.EditCar;
 using CarRental.Application.CarRental.Queries.GetAllCars;
 using CarRental.Application.CarRental.Queries.GetCArbyId;
@@ -18,8 +19,8 @@ namespace CarRental.MVC.Controllers
         }
         public async Task<IActionResult> Create()
         {
-            
-            return View();
+
+            return  View();
         }
         [HttpPost]
         public async Task<IActionResult> Create(CreateNewCarCommand command)
@@ -50,8 +51,27 @@ namespace CarRental.MVC.Controllers
             return View(model);
         }
         [HttpPost]
-        [Route("Car/{Id}/Edit")]
+        [Route("Car/{CarId}/Edit")]
         public async Task<IActionResult> Edit(EditCarCommand command)
+        {
+            if (!ModelState.IsValid)
+
+            { return View(command); }
+
+            await mediator.Send(command);
+
+            return RedirectToAction(nameof(Index));
+
+        }
+        [Route("Car/{Id}/Rent")]
+        public async Task<IActionResult> Rent()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        [Route("Car/{CarId}/Rent")]
+        public async Task<IActionResult> Rent(CreateNewRentCommand command)
         {
             if (!ModelState.IsValid)
 
@@ -64,7 +84,9 @@ namespace CarRental.MVC.Controllers
         }
 
 
-        
-      
+
+
+
+
     }
 }

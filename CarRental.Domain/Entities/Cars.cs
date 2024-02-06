@@ -24,5 +24,6 @@ namespace CarRental.Domain.Entities
         public int BoxCapacity { get; set; }
        public string? CreatedById { get; set; }
         public bool IsEditable { get; set; }
+        public ICollection<Rents>? Rents { get; set; }
     }
 }

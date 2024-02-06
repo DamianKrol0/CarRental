@@ -13,11 +13,16 @@
 
 @foreach (var item in Model)
 {
-     <div class="card" style="width: 18rem;">
-         
-      <div class="card-body">
-            <h5 class="card-title">@item.Brand @item.Name <a href="#" class="btn btn-outline-secondary">Rent</a></h5>
-           
+    <div class="card" style="width: 18rem;">
+
+        <div class="card-body">
+            @if (User == null) {
+            <h5 class="card-title">@item.Brand @item.Name <a class="btn btn-outline-secondary" asp-area="Identity" asp-page="/Account/Login" >Rent</a></h5>}
+            else
+            {
+                                <h5 class="card-title">@item.Brand @item.Name <a class="btn btn-outline-secondary" asp-controller="CarRental" asp-action="Rent" asp-route-id ="@item.Id">Rent</a></h5>
+            }
+
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">@item.Description</li>
@@ -26,7 +31,7 @@
       <div class="card-body">
             
             <a  asp-controller="CarRental" asp-action="Details" asp-route-id ="@item.Id" class="btn btn-outline-secondary">More Details</a>
-            @if ( User.IsInRole("Owner") || User.IsInRole("Moderator"))
+            @if (User == null && (User.IsInRole("Owner") || User.IsInRole("Moderator")))
         {
             <a asp-controller="CarRental" asp-action="Edit" asp-route-id ="@item.Id"class="btn btn-outline-secondary">Edit</a>
         }

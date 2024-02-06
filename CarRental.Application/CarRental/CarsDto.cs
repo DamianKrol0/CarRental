@@ -22,7 +22,8 @@ namespace CarRental.Application.CarRental
         public int? Persons {get; set;}
         public int BoxCapacity { get; set;}
         public string? CreatedById { get; set; }
-        public bool IsEditable { get; set; }   
+        public bool IsEditable { get; set; }
+        public  ICollection<RentDto>? Rents { get; set; }
 
     }
 }
