@@ -33,6 +33,11 @@ namespace CarRental.Infrastructure.Persistance
                 .WithOne(e => e.Car)
                 .HasForeignKey(e => e.CarId)
                 .HasPrincipalKey(e => e.Id);
+            modelBuilder.Entity<Rents>()
+                .Property(r => r.StartDate).HasColumnType("date");
+            modelBuilder.Entity<Rents>()
+                .Property(r => r.EndDate).HasColumnType("date");
+                
             
         }
     }
