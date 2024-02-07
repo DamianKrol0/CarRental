@@ -6,6 +6,8 @@ using CarRental.Application.CarRental.Queries.GetAllCars;
 using CarRental.Application.CarRental.Queries.GetCArbyId;
 
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarRental.MVC.Controllers
@@ -43,6 +45,8 @@ namespace CarRental.MVC.Controllers
 
 
         [Route("Car/{Id}/Edit")]
+        [Authorize(Roles = "Owner")]
+        [Authorize(Roles = "Moderator")]
         public async Task<IActionResult> Edit(int id)
         {
             var cars = await mediator.Send(new GetCarByIdQuery(id));
@@ -51,6 +55,8 @@ namespace CarRental.MVC.Controllers
             return View(model);
         }
         [HttpPost]
+        [Authorize(Roles ="Owner")]
+        [Authorize(Roles ="Moderator")]
         [Route("Car/{CarId}/Edit")]
         public async Task<IActionResult> Edit(EditCarCommand command)
         {
@@ -63,13 +69,16 @@ namespace CarRental.MVC.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+        [Authorize]
         [Route("Car/{Id}/Rent")]
         public async Task<IActionResult> Rent()
         {
+            
 
             return View();
         }
         [HttpPost]
+        [Authorize]
         [Route("Car/{CarId}/Rent")]
         public async Task<IActionResult> Rent(CreateNewRentCommand command)
         {
