@@ -23,7 +23,7 @@ namespace CarRental.Infrastructure.Extensions
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<CarRentalDbContext>();
-                
+            
 
 
             services.AddScoped<DbContext, CarRentalDbContext>();

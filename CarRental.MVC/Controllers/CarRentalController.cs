@@ -22,7 +22,7 @@ namespace CarRental.MVC.Controllers
         public async Task<IActionResult> Create()
         {
 
-            return  View();
+             return View();
         }
         [HttpPost]
         public async Task<IActionResult> Create(CreateNewCarCommand command)

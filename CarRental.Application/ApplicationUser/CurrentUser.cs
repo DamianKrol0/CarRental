@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarRental.Application.CarRental;
+using Microsoft.AspNetCore.Identity;
 
 namespace CarRental.Application.ApplicationUser
 {
-    public class CurrentUser(string id, string email, IEnumerable<string> roles)
+    public class CurrentUser(string id, string email, IEnumerable<string> roles) : IdentityUser
     {
         public string id = id;
         public string email = email;
