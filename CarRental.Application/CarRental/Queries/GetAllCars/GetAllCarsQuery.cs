@@ -20,8 +20,8 @@ namespace CarRental.Application.CarRental.Queries.GetAllCars
         public async Task<IEnumerable<CarsDto>> Handle(GetAllCarsQuery request, CancellationToken cancellationToken)
 
         {
-            var cars = await repository.GetAll();
-            var dtos = mapper.Map<IEnumerable<CarsDto>>(cars);
+            var cars = await _repository.GetAll();
+            var dtos = _mapper.Map<IEnumerable<CarsDto>>(cars);
             return dtos;
         }
 
