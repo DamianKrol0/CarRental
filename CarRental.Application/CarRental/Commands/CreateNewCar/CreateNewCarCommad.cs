@@ -25,7 +25,7 @@ namespace CarRental.Application.CarRental.Commands.CreateNewCar
 
             var user = _userContext.GetCurrentUser();
 
-            if (!user.roles.Contains("Owner") && !user.roles.Contains("Moderator"))
+            if (user != null && (!user.roles.Contains("Owner") && !user.roles.Contains("Moderator")))
             { throw new Exception("You have no access"); }
             else
             {
@@ -48,8 +48,6 @@ namespace CarRental.Application.CarRental.Commands.CreateNewCar
                .NotEmpty();
             RuleFor(c => c.Brand)
                .NotEmpty();
-
-
             RuleFor(c => c.Consumption)
                .NotEmpty();
             RuleFor(c => c.Persons)

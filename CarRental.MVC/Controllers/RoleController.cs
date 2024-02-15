@@ -98,7 +98,7 @@ namespace Identity.Controllers
                 }
                 foreach (string userId in model.DeleteIds ?? new string[] { })
                 {
-                    IdentityUser user = await _userMrg.FindByIdAsync(userId);
+                    var user = await _userMrg.FindByIdAsync(userId);
                     if (user != null)
                     {
                         result = await _userMrg.RemoveFromRoleAsync(user, model.RoleName);

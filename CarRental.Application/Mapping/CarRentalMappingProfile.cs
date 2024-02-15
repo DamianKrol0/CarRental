@@ -19,7 +19,7 @@ namespace CarRental.Application.Mapping
 
             CreateMap<CarsDto, Domain.Entities.Cars>().ReverseMap();
             CreateMap<CarsDto, EditCarCommand>();
-            CreateMap<RentDto, Domain.Entities.Rents>();
+            CreateMap<RentDto, Domain.Entities.Rents>().ReverseMap(); 
 
 
             CreateMap<Domain.Entities.Cars, CarsDto>()

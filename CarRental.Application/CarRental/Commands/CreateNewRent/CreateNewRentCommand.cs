@@ -37,10 +37,13 @@ namespace CarRental.Application.CarRental.Commands.CreateNewRent
     {
         public CreateNewRentCommandValidator()
         {
-            RuleFor(c => c.StartDate).NotEmpty();
+            RuleFor(c => c.StartDate).NotEmpty().LessThanOrEqualTo(c => c.EndDate);
+
+
+            
+
             RuleFor(c => c.EndDate).NotEmpty();
-            RuleFor(c => c.CarId).NotEmpty();
-            RuleFor(c => c.CreatedById).NotEmpty();
+            
         }
     }
 }
