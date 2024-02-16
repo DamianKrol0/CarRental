@@ -9,7 +9,7 @@ using CarRental.Domain.Interfaces;
 using FluentValidation;
 using MediatR;
 
-namespace CarRental.Application.CarRental.Commands.CreateNewRent
+namespace CarRental.Application.Rent.Command.CreateNewRent
 {
     public class CreateNewRentCommand : RentDto, IRequest
     {
@@ -40,10 +40,10 @@ namespace CarRental.Application.CarRental.Commands.CreateNewRent
             RuleFor(c => c.StartDate).NotEmpty().LessThanOrEqualTo(c => c.EndDate);
 
 
-            
+
 
             RuleFor(c => c.EndDate).NotEmpty();
-            
+
         }
     }
 }

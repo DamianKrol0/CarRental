@@ -7,7 +7,7 @@ using AutoMapper;
 using CarRental.Domain.Interfaces;
 using MediatR;
 
-namespace CarRental.Application.CarRental.Queries.GetCArbyId
+namespace CarRental.Application.Car.Queries.GetCArbyId
 {
     public class GetCarByIdQuery(int Id) : IRequest<CarsDto>
     {

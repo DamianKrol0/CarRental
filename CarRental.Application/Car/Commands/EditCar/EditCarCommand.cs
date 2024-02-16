@@ -8,7 +8,7 @@ using CarRental.Domain.Interfaces;
 using FluentValidation;
 using MediatR;
 
-namespace CarRental.Application.CarRental.Commands.EditCar
+namespace CarRental.Application.Car.Commands.EditCar
 {
     public class EditCarCommand : CarsDto,IRequest
     {

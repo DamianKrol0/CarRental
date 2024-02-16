@@ -9,7 +9,7 @@ using CarRental.Domain.Interfaces;
 using FluentValidation;
 using MediatR;
 
-namespace CarRental.Application.CarRental.Commands.CreateNewCar
+namespace CarRental.Application.Car.Commands.CreateNewCar
 {
     public class CreateNewCarCommand : CarsDto,IRequest
     {

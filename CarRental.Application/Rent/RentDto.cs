@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using CarRental.Application.ApplicationUser;
 using CarRental.Domain.Entities;
 
-namespace CarRental.Application.CarRental
+namespace CarRental.Application.Rent
 {
     public class RentDto
     {
-      
+
         public int Id { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

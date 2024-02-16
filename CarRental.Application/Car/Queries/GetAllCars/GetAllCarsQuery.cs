@@ -7,7 +7,7 @@ using AutoMapper;
 using CarRental.Domain.Interfaces;
 using MediatR;
 
-namespace CarRental.Application.CarRental.Queries.GetAllCars
+namespace CarRental.Application.Car.Queries.GetAllCars
 {
     public class GetAllCarsQuery :IRequest<IEnumerable<CarsDto>>
     {

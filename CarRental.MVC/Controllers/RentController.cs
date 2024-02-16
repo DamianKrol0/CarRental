@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CarRental.Application.CarRental.Queries.GetAllRents;
-using CarRental.Application.CarRental.Queries.GetRentById;
+using CarRental.Application.Rent.Queries.GetAllRents;
+using CarRental.Application.Rent.Queries.GetRentById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

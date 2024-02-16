@@ -1,11 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Data;
 using CarRental.Application.ApplicationUser;
+using CarRental.Application.Role.Commands.CreateNewRole;
+using CarRental.Application.Role.Commands.DeleteRole;
 using CarRental.MVC.Controllers;
 using Identity.Models;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Identity.Controllers
 {
@@ -14,11 +18,13 @@ namespace Identity.Controllers
     {
         private RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<IdentityUser> _userMrg;
+        private readonly IMediator _mediator;
 
-        public RoleController(RoleManager<IdentityRole> roleMgr, UserManager<IdentityUser> userMrg)
+        public RoleController(RoleManager<IdentityRole> roleMgr, UserManager<IdentityUser> userMrg, IMediator mediator)
         {
             _roleManager = roleMgr;
             _userMrg = userMrg;
+            _mediator = mediator;
         }
         [Authorize(Roles = "Owner")]
         public ViewResult Index() => View(_roleManager.Roles);
@@ -29,44 +35,36 @@ namespace Identity.Controllers
                 ModelState.AddModelError("", error.Description);
         }
         [Authorize(Roles = "Owner")]
-        public IActionResult Create() => View();
-        [Authorize(Roles = "Owner")]
-        [HttpPost]
-        public async Task<IActionResult> Create([Required] string name)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = await _roleManager.CreateAsync(new IdentityRole(name));
-                if (result.Succeeded)
-                    return RedirectToAction("Index");
-                else
-                    Errors(result);
-            }
-            return View(name);
+        public IActionResult Create() 
+        { 
+            return View(); 
         }
         [Authorize(Roles = "Owner")]
         [HttpPost]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Create(CreateNewRoleCommand command)
         {
-            var role = await _roleManager.FindByIdAsync(id);
-            if (role != null)
+            if (!ModelState.IsValid)
             {
-                IdentityResult result = await _roleManager.DeleteAsync(role);
-                if (result.Succeeded)
-                    return RedirectToAction("Index");
-                else
-                    Errors(result);
+                  return View(command);    
             }
-            else
-                ModelState.AddModelError("", "No role found");
-            return View("Index", _roleManager.Roles);
+               await _mediator.Send(command);
+            return RedirectToAction(nameof(Index));
+        }
+        [Authorize(Roles = "Owner")]
+        [HttpPost]
+        public async Task<IActionResult> Delete(DeleteRoleCommand command)
+        {
+
+            await _mediator.Send(command);
+
+            return RedirectToAction("Index");
         }
         [Authorize(Roles = "Owner")]
         public async Task<IActionResult> Update(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
-            List<IdentityUser> members = new List<IdentityUser>();
-            List<IdentityUser> nonMembers = new List<IdentityUser>();
+            var members = new List<IdentityUser>();
+            var nonMembers = new List<IdentityUser>();
             foreach (IdentityUser user in _userMrg.Users)
             {
                 var list = await _userMrg.IsInRoleAsync(user, role.Name) ? members : nonMembers;

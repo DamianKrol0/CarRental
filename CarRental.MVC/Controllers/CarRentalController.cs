@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
-using CarRental.Application.CarRental.Commands.CreateNewCar;
-using CarRental.Application.CarRental.Commands.CreateNewRent;
-using CarRental.Application.CarRental.Commands.EditCar;
-using CarRental.Application.CarRental.Queries.GetAllCars;
-using CarRental.Application.CarRental.Queries.GetCArbyId;
-
+using CarRental.Application.Car.Commands.CreateNewCar;
+using CarRental.Application.Car.Commands.EditCar;
+using CarRental.Application.Car.Queries.GetAllCars;
+using CarRental.Application.Car.Queries.GetCArbyId;
+using CarRental.Application.Rent.Command.CreateNewRent;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;

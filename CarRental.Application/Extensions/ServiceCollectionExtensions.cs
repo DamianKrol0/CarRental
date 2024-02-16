@@ -5,13 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using CarRental.Application.ApplicationUser;
-using CarRental.Application.CarRental.Commands.CreateNewCar;
+using CarRental.Application.Car.Commands.CreateNewCar;
 using CarRental.Application.Mapping;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-
-using CarRental.Application.CarRental.Commands.CreateNewRent;
+using CarRental.Application.Rent.Command.CreateNewRent;
 
 namespace CarRental.Application.Extensions
 {

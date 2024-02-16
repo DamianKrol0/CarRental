@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using CarRental.Application.ApplicationUser;
-using CarRental.Application.CarRental;
-using CarRental.Application.CarRental.Commands.EditCar;
+using CarRental.Application.Car ;
+using CarRental.Application.Car.Commands.EditCar;
+using CarRental.Application.Rent;
 
 
 namespace CarRental.Application.Mapping
