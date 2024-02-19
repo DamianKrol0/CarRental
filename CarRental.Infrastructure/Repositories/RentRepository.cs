@@ -39,5 +39,14 @@ namespace CarRental.Infrastructure.Repositories
         {
             return await _dbContext.Rents.FirstAsync(c=>c.Id == id);
         }
+        
+
+        public async Task Delete(int id)
+        {
+            var rent = await _dbContext.Rents.FirstAsync(c => c.Id == id);
+
+            _dbContext.Remove(rent);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

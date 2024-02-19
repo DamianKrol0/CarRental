@@ -11,21 +11,19 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
+        <tr><th>
+                @Html.DisplayNameFor(model => model.CarId)
             </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EndDate)
             </th>
+            
             <th>
-                @Html.DisplayNameFor(model => model.CarId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedById)
+                @Html.DisplayNameFor(model => model.CreatedBy)
             </th>
             <th></th>
         </tr>
@@ -34,25 +32,24 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
+                       <td>
+                    @Html.DisplayFor(modelItem => item.CarId)
+                    </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.StartDate)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EndDate)
                 </td>
+             
                 <td>
-                    @Html.DisplayFor(modelItem => item.CarId)
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedById)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                  
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post"><button type="submit" class="btn btn-sm btn-danger">
+                                Delete
+                            </button> </form>
                 </td>
             </tr>
         }

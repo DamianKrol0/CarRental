@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarRental.Application.ApplicationUser;
 using CarRental.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace CarRental.Application.Rent
 {
@@ -17,6 +18,8 @@ namespace CarRental.Application.Rent
         public int CarId { get; set; }
         public Cars Car { get; set; }
         public string? CreatedById { get; set; }
+        public string? CreatedBy { get; set; }
+        
 
     }
 }

@@ -12,6 +12,7 @@ namespace CarRental.Application.Role.Commands.DeleteRole
 {
     public class DeleteRoleCommand:IdentityRole,IRequest
     {
+      
     }
     public class DeleteRoleCommandHandler(RoleManager<IdentityRole> roleMgr, IMapper mapper) : IRequestHandler<DeleteRoleCommand>
     {

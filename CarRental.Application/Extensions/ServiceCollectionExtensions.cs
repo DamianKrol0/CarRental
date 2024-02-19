@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using CarRental.Application.Rent.Command.CreateNewRent;
+using Microsoft.AspNetCore.Identity;
 
 namespace CarRental.Application.Extensions
 {
@@ -24,7 +25,8 @@ namespace CarRental.Application.Extensions
             {
             var scope = provider.CreateScope();
                 var userContext =scope.ServiceProvider.GetRequiredService<IUserContext>();
-            cfg.AddProfile(new CarRentalMappingProfile(userContext));
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                cfg.AddProfile(new CarRentalMappingProfile(userContext, userManager));
             }).CreateMapper());
 
             services.AddValidatorsFromAssemblyContaining<CreateNewCarCommandValidator>()

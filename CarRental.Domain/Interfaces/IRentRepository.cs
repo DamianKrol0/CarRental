@@ -12,5 +12,6 @@ namespace CarRental.Domain.Interfaces
         Task<Domain.Entities.Rents> GetRentById(int id);
         Task Create(Domain.Entities.Rents rents);
         Task Commit();
+        Task Delete(int id);
     }
 }
