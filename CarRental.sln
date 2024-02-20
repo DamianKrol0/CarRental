@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.ApplicationTests", "CarRental.ApplicationTests\CarRental.ApplicationTests.csproj", "{FCAAE9F1-AEAA-4DFE-912A-F435A1ECBA82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{F234AED4-4EDE-4789-A279-E3EAF70D551B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F234AED4-4EDE-4789-A279-E3EAF70D551B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F234AED4-4EDE-4789-A279-E3EAF70D551B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCAAE9F1-AEAA-4DFE-912A-F435A1ECBA82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCAAE9F1-AEAA-4DFE-912A-F435A1ECBA82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCAAE9F1-AEAA-4DFE-912A-F435A1ECBA82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCAAE9F1-AEAA-4DFE-912A-F435A1ECBA82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
