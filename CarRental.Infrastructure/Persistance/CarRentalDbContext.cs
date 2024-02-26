@@ -17,6 +17,7 @@ namespace CarRental.Infrastructure.Persistance
         }
         public DbSet<Domain.Entities.Cars> Cars { get; set; }
         public DbSet<Domain.Entities.Rents> Rents { get; set; }
+        public DbSet<Domain.Entities.Currencies> Currencies { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,12 +34,22 @@ namespace CarRental.Infrastructure.Persistance
                 .WithOne(e => e.Car)
                 .HasForeignKey(e => e.CarId)
                 .HasPrincipalKey(e => e.Id);
+            
             modelBuilder.Entity<Rents>()
                 .Property(r => r.StartDate).HasColumnType("date");
+            
             modelBuilder.Entity<Rents>()
                 .Property(r => r.EndDate).HasColumnType("date");
-                
-            
+
+            modelBuilder.Entity<Currencies>()
+                .HasKey(e=>e.CurrencyId);
+
+            modelBuilder.Entity<Cars>()
+               .HasOne(e => e.Currency)
+               .WithMany(e => e.Cars)
+               .HasForeignKey(e => e.CurrencyId);
+               
+
         }
     }
 }

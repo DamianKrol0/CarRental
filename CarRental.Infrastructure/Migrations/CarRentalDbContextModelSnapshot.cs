@@ -44,8 +44,8 @@ namespace CarRental.Infrastructure.Migrations
                     b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Currency")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("CurrencyId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -66,7 +66,27 @@ namespace CarRental.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CurrencyId");
+
                     b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.Currencies", b =>
+                {
+                    b.Property<string>("CurrencyId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CurrencyId");
+
+                    b.ToTable("Currencies");
                 });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Rents", b =>
@@ -299,6 +319,15 @@ namespace CarRental.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CarRental.Domain.Entities.Cars", b =>
+                {
+                    b.HasOne("CarRental.Domain.Entities.Currencies", "Currency")
+                        .WithMany("Cars")
+                        .HasForeignKey("CurrencyId");
+
+                    b.Navigation("Currency");
+                });
+
             modelBuilder.Entity("CarRental.Domain.Entities.Rents", b =>
                 {
                     b.HasOne("CarRental.Domain.Entities.Cars", "Car")
@@ -364,6 +393,11 @@ namespace CarRental.Infrastructure.Migrations
             modelBuilder.Entity("CarRental.Domain.Entities.Cars", b =>
                 {
                     b.Navigation("Rents");
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.Currencies", b =>
+                {
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

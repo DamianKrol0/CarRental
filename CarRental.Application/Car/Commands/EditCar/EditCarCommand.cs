@@ -31,7 +31,7 @@ namespace CarRental.Application.Car.Commands.EditCar
                 car.Brand = request.Brand;
                 car.Description = request.Description;
                 car.Price = request.Price;
-                car.Currency = request.Currency;
+                car.CurrencyId = request.CurrencyId;
                 car.BoxCapacity = request.BoxCapacity;
                 car.Consumption = request.Consumption;
                 car.Persons = request.Persons;

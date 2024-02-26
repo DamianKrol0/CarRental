@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.Infrastructure.Migrations
 {
     [DbContext(typeof(CarRentalDbContext))]
-    [Migration("20240119075154_addingNewColumnCreatedById")]
-    partial class addingNewColumnCreatedById
+    [Migration("20240226131619_AddTableCurrency02")]
+    partial class AddTableCurrency02
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -42,17 +42,19 @@ namespace CarRental.Infrastructure.Migrations
 
                     b.Property<decimal?>("Consumption")
                         .HasPrecision(1)
-                        .HasColumnType("decimal(5,2)");
+                        .HasColumnType("decimal(6,2)");
 
                     b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Currencies")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("CurrencyId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsEditable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -63,11 +65,59 @@ namespace CarRental.Infrastructure.Migrations
 
                     b.Property<decimal>("Price")
                         .HasPrecision(2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CurrencyId");
+
                     b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.Currencies", b =>
+                {
+                    b.Property<string>("CurrencyId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CurrencyId");
+
+                    b.ToTable("Currencies");
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.Rents", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Rents");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -272,6 +322,26 @@ namespace CarRental.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CarRental.Domain.Entities.Cars", b =>
+                {
+                    b.HasOne("CarRental.Domain.Entities.Currencies", "Currency")
+                        .WithMany("Cars")
+                        .HasForeignKey("CurrencyId");
+
+                    b.Navigation("Currency");
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.Rents", b =>
+                {
+                    b.HasOne("CarRental.Domain.Entities.Cars", "Car")
+                        .WithMany("Rents")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -321,6 +391,16 @@ namespace CarRental.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.Cars", b =>
+                {
+                    b.Navigation("Rents");
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.Currencies", b =>
+                {
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

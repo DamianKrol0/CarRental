@@ -47,7 +47,7 @@ namespace CarRental.Infrastructure.Migrations
                     b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Currency")
+                    b.Property<string>("Currencies")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")

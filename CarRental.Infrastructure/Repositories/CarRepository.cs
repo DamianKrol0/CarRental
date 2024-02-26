@@ -13,26 +13,26 @@ namespace CarRental.Infrastructure.Repositories
     public class CarRepository : ICarRepository
 
     {
-        private readonly CarRentalDbContext dbContext;
+        private readonly CarRentalDbContext _dbContext;
 
         public CarRepository(CarRentalDbContext dbContext)
         {
-            this.dbContext = dbContext;
+            this._dbContext = dbContext;
         }
 
         public Task Commit()
-        =>dbContext.SaveChangesAsync(); 
+        =>_dbContext.SaveChangesAsync(); 
 
         public async Task Create(Cars car)
         {
-            dbContext.Add(car);
-            await dbContext.SaveChangesAsync(); 
+            _dbContext.Add(car);
+            await _dbContext.SaveChangesAsync(); 
         }
 
         public async Task<IEnumerable<Domain.Entities.Cars>> GetAll()
-           => await dbContext.Cars.ToListAsync();
+           => await _dbContext.Cars.ToListAsync();
 
         public async Task<Cars> GetCarById(int id)
-        => await dbContext.Cars.FirstAsync(c => c.Id == id);
+        => await _dbContext.Cars.FirstAsync(c => c.Id == id);
     }
 }

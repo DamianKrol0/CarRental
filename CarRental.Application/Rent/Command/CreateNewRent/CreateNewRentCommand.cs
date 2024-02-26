@@ -39,9 +39,6 @@ namespace CarRental.Application.Rent.Command.CreateNewRent
         {
             RuleFor(c => c.StartDate).NotEmpty().LessThanOrEqualTo(c => c.EndDate);
 
-
-
-
             RuleFor(c => c.EndDate).NotEmpty();
 
         }

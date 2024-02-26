@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarRental.Application.Currency;
 using CarRental.Application.Rent;
+using CarRental.Domain.Entities;
 
 namespace CarRental.Application.Car
 {
@@ -16,7 +18,7 @@ namespace CarRental.Application.Car
 
         public decimal Price { get; set; }
 
-        public string? Currency { get; set; }
+        public string? CurrencyId { get; set; }
 
         public decimal? Consumption { get; set; }
 
@@ -25,6 +27,8 @@ namespace CarRental.Application.Car
         public string? CreatedById { get; set; }
         public bool IsEditable { get; set; }
         public  ICollection<RentDto>? Rents { get; set; }
+        public CurrenciesDto? Currencies { get; set; }
+   
 
     }
 }

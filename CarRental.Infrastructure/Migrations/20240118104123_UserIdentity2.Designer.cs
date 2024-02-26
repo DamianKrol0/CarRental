@@ -44,7 +44,7 @@ namespace CarRental.Infrastructure.Migrations
                         .HasPrecision(1)
                         .HasColumnType("decimal(5,2)");
 
-                    b.Property<string>("Currency")
+                    b.Property<string>("Currencies")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

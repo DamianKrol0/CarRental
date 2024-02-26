@@ -48,7 +48,7 @@ namespace CarRental.Infrastructure.Migrations
                 name: "Rents");
 
             migrationBuilder.AlterColumn<string>(
-                name: "Currency",
+                name: "Currencies",
                 table: "Cars",
                 type: "nvarchar(max)",
                 nullable: false,

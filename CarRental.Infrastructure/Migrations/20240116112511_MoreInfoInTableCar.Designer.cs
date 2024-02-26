@@ -43,7 +43,7 @@ namespace CarRental.Infrastructure.Migrations
                     b.Property<decimal?>("Consumption")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Currency")
+                    b.Property<string>("Currencies")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

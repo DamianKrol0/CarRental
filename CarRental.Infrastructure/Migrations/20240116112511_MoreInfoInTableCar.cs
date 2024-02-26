@@ -39,7 +39,7 @@ namespace CarRental.Infrastructure.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "Currency",
+                name: "Currencies",
                 table: "Cars",
                 type: "nvarchar(max)",
                 nullable: false,
@@ -86,7 +86,7 @@ namespace CarRental.Infrastructure.Migrations
                 table: "Cars");
 
             migrationBuilder.DropColumn(
-                name: "Currency",
+                name: "Currencies",
                 table: "Cars");
 
             migrationBuilder.DropColumn(

@@ -29,6 +29,7 @@ namespace CarRental.Infrastructure.Extensions
             services.AddScoped<DbContext, CarRentalDbContext>();
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<IRentRepository, RentRepository>();
+            services.AddScoped<ICurrenciesRepository, CurrenciesRepository>();
             
 
         }

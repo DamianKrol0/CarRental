@@ -48,7 +48,7 @@ namespace CarRental.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Currency")
+                    b.Property<string>("Currencies")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

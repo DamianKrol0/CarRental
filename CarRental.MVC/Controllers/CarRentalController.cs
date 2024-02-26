@@ -3,11 +3,15 @@ using CarRental.Application.Car.Commands.CreateNewCar;
 using CarRental.Application.Car.Commands.EditCar;
 using CarRental.Application.Car.Queries.GetAllCars;
 using CarRental.Application.Car.Queries.GetCArbyId;
+using CarRental.Application.Currency;
+using CarRental.Application.Currency.Queries;
 using CarRental.Application.Rent.Command.CreateNewRent;
+using CarRental.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CarRental.MVC.Controllers
 {
@@ -16,10 +20,19 @@ namespace CarRental.MVC.Controllers
         public async Task <IActionResult> Index()
         {
             var cars = await mediator.Send(new GetAllCarsQuery());
+            var currencies = await mediator.Send(new GetAllCurrenciesQuery());
+            foreach (var car in cars)
+            {
+                car.Currencies = ((from c in currencies
+                                  where c.CurrencyId == car.CurrencyId
+                                  select c).FirstOrDefault() as CurrenciesDto);
+            }
             return View(cars);
         }
         public async Task<IActionResult> Create()
         {
+            var currencies =await  mediator.Send(new GetAllCurrenciesQuery());
+            ViewBag.Currencies = new SelectList(currencies,"CurrencyId","Code");
 
              return View();
         }

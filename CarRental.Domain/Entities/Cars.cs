@@ -16,7 +16,7 @@ namespace CarRental.Domain.Entities
 
         public decimal Price { get; set; }
 
-       public string? Currency {  get; set; }    
+       public string? CurrencyId {  get; set; }    
 
         public decimal? Consumption { get; set; }
 
@@ -25,5 +25,6 @@ namespace CarRental.Domain.Entities
        public string? CreatedById { get; set; }
         public bool IsEditable { get; set; }
         public ICollection<Rents>? Rents { get; set; }
+        public Currencies? Currency { get; set; }
     }
 }
