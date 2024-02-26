@@ -25,10 +25,9 @@ namespace CarRental.Application.Mapping
             CreateMap<CarsDto, EditCarCommand>();
             CreateMap<Domain.Entities.Rents, RentDto>().
                 ForMember(dto => dto.CreatedBy, opt => opt.MapFrom(src => userMrg.FindByIdAsync(src.CreatedById).Result.UserName));
-
-
             CreateMap<Domain.Entities.Cars, CarsDto>()
                 .ForMember(dto => dto.IsEditable, opt => opt.MapFrom(src => user != null && src.CreatedById == user.id));
+         
         }
     }
 }

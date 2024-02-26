@@ -1,19 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Data;
-using CarRental.Application.ApplicationUser;
-using CarRental.Application.Role.Commands.CreateNewRole;
+﻿using CarRental.Application.Role.Commands.CreateNewRole;
 using CarRental.Application.Role.Commands.DeleteRole;
-using CarRental.MVC.Controllers;
+using CarRental.Application.Role.Queries.FindRoleById;
+using CarRental.Application.User.Commands.AddUserToRole;
+using CarRental.Application.User.Commands.RemoveUserFromRole;
+using CarRental.Application.User.Queries.FindUserById;
+using CarRental.Application.User.Queries.IsInRole;
 using Identity.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Identity.Controllers
 {
-    
+
     public class RoleController : Controller
     {
         private RoleManager<IdentityRole> _roleManager;
@@ -62,12 +62,12 @@ namespace Identity.Controllers
         [Authorize(Roles = "Owner")]
         public async Task<IActionResult> Update(string id)
         {
-            var role = await _roleManager.FindByIdAsync(id);
+            var role = await _mediator.Send(new FindRoleByIdQuery(id));
             var members = new List<IdentityUser>();
             var nonMembers = new List<IdentityUser>();
-            foreach (IdentityUser user in _userMrg.Users)
+            foreach (var user in _userMrg.Users)
             {
-                var list = await _userMrg.IsInRoleAsync(user, role.Name) ? members : nonMembers;
+                var list = await _mediator.Send(new IsInRoleUserQuery(user, role.Name))  ? members : nonMembers;
                 list.Add(user);
             }
             return View(new RoleEdit
@@ -86,22 +86,18 @@ namespace Identity.Controllers
             {
                 foreach (string userId in model.AddIds ?? new string[] { })
                 {
-                    var user = await _userMrg.FindByIdAsync(userId);
+                    var user = await _mediator.Send(new FindUserByIdQuery(userId));    
                     if (user != null)
                     {
-                        result = await _userMrg.AddToRoleAsync(user, model.RoleName);
-                        if (!result.Succeeded)
-                            Errors(result);
+                        await _mediator.Send(new AddUserToRoleCommand(user,model.RoleName));
                     }
                 }
                 foreach (string userId in model.DeleteIds ?? new string[] { })
                 {
-                    var user = await _userMrg.FindByIdAsync(userId);
+                    var user = await _mediator.Send(new FindUserByIdQuery(userId));
                     if (user != null)
                     {
-                        result = await _userMrg.RemoveFromRoleAsync(user, model.RoleName);
-                        if (!result.Succeeded)
-                            Errors(result);
+                       await _mediator.Send(new RemoveUserFromRoleCommand(user, model.RoleName));
                     }
                 }
             }
