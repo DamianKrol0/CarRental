@@ -7,6 +7,7 @@ using CarRental.Application.Currency;
 using CarRental.Application.Currency.Queries;
 using CarRental.Application.Rent.Command.CreateNewRent;
 using CarRental.Domain.Entities;
+using CarRental.MVC.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
@@ -44,6 +45,8 @@ namespace CarRental.MVC.Controllers
             { return View(command); }
 
             await mediator.Send(command);
+
+            this.SetNotification("success", $"Created car: {command.Name}");
 
             return RedirectToAction(nameof(Index));
 
